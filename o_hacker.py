@@ -12,12 +12,27 @@ icon = pygame.image.load("img/icone/man.png")
 pygame.display.set_icon(icon)
 
 # Desktop
-pasta1_img = pygame.image.load('img/desktop/pasta.png')
-pasta1_X = 600
-pasta1_Y = 450
+lixeira_img = pygame.image.load('img/desktop/bin.png')
+lixeiraX = 80
+lixeiraY = 100
 
-def desktop():
-    screen.blit(pasta1_img, (pasta1_X, pasta1_Y))
+pastaDados_img = pygame.image.load('img/desktop/pasta_dados.png')
+pastaDadosX = 80
+pastaDadosY = 200
+
+cmd_img = pygame.image.load('img/desktop/cmd.png')
+cmdX = 80
+cmdY = 300
+
+def pastaDados():
+    screen.blit(pastaDados_img, (pastaDadosX, pastaDadosY))
+
+def lixeira():
+    screen.blit(lixeira_img, (lixeiraX, lixeiraY))
+
+def cmd():
+    screen.blit(cmd_img, (cmdX, cmdY))
+
 
 # Loop do jogo
 running = True
@@ -25,12 +40,14 @@ running = True
 while running:
 
     # RGB
-    screen.fill((0, 0, 90))
+    screen.fill((200, 200, 255))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    desktop()
+    pastaDados()
+    lixeira()
+    cmd()
 
     pygame.display.update()
