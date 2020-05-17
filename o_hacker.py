@@ -52,7 +52,7 @@ def name():
 
     # Mensagens do Hacker
 
-    hacker = [] # 11
+    hacker = []  # 11
     hacker.append("TI@172.222.62.108: Eae tudo bem? Eu sou o cara novo de TI, comecei semana passada.")
     hacker.append("TI@172.222.62.108: Você estava doente semana passada né?")
     hacker.append("TI@172.222.62.108: Pois é, quem adoeceu essa semana fui eu. hahahahah")
@@ -67,7 +67,7 @@ def name():
 
 
     bool_chat1 = True
-    chat1 = 0 # 10
+    chat1 = 0  # 10
     hacker.append("TI@172.222.62.108: Então cara, se você for na sua pasta de dados e abrir o primeiro arquivo")
     hacker.append("TI@172.222.62.108: Você vai ver uma lista de IP dos clientes.")
     hacker.append("TI@172.222.62.108: Eu preciso que você me conecte com 'Arnaldo Segurança'.")
@@ -79,29 +79,31 @@ def name():
     hacker.append("TI@172.222.62.108: Esses cavalos de esparta servem pra fortalecer a defesa do cliente.")
     hacker.append("TI@172.222.62.108: Estarei monitorando, quando você terminar entrarei em contato.")
 
-
-    chat2 = 0 #8
+    bool_chat2 = False
+    chat2 = 0  # 9
     hacker.append("TI@172.222.62.108: Muito bem! Com os cavalos de esparta, ninguém vai conseguir hackear a segurança!")
     hacker.append("TI@172.222.62.108: Percebi aqui que os dados do cliente 'Banco Gold' "
                   "também precisam de uma melhorada.")
     hacker.append("TI@172.222.62.108: Vou precisar que você use o comando download para baixar "
                   "os arquivos deste cliente.")
-    hacker.append("TI@172.222.62.108: Você vai ter que baixar o arquivo 'confidencial.dat' de "
-                  "cada um dos IPs deste cliente.")
+    hacker.append("TI@172.222.62.108: Você vai ter que baixar os seguintes arquivos dos"
+                  " seguintes IPs deste cliente:.")
+    hacker.append("TI@172.222.62.108: Banco Gold 1: confidencial.txt, Banco Gold 2: CC.txt, Banco Gold 3: senhas.txt")
     hacker.append("TI@172.222.62.108: Quando você tiver juntado os arquivos, é só me mandar que eu faço o resto.")
     hacker.append("TI@172.222.62.108: Para realizar o download é só fazer igual ao upload.")
     hacker.append("TI@172.222.62.108: Neste caso ao invés de upload é só digitar 'download [nome_do_arquivo]'.")
     hacker.append("TI@172.222.62.108: Vou voltar a fazer coisas de TI, quando você me mandar os "
                   "arquivos eu falo com você.")
 
-    chat3 = 0 #
+    bool_chat3 = False
+    chat3 = 0  # 8
     hacker.append("TI@172.222.62.108: Serviço concluído com sucesso! os clientes do Banco Gold agradecem!")
     hacker.append("TI@172.222.62.108: Eu sei que eu estou te atrapalhando muito hoje.")
     hacker.append("TI@172.222.62.108: Mas vou precisar de mais um favor.")
     hacker.append("TI@172.222.62.108: Vou precisar que você me passe o arquivo 'apaga_rastro.rofl'.")
     hacker.append("TI@172.222.62.108: É só fazer o upload para o meu IP.")
     hacker.append("TI@172.222.62.108: Depois disso eu quero que você faça o download do arquivo 'Testa_de_Ferro.exe'.")
-    hacker.append("TI@172.222.62.108: Quando terminar, dê disconnect e dê um 'execute Dados/Testa_de_Ferro.exe'.")
+    hacker.append("TI@172.222.62.108: Quando terminar 'execute Dados/Testa_de_Ferro.exe' e digite 'shutdown'.")
     hacker.append("TI@172.222.62.108: Depois disso, pode voltar ao trabalho, nos encontramos quando eu melhorar!")
 
 
@@ -126,24 +128,40 @@ def name():
 
     Inicio = False
 
-    Connect_Geral = False
+    Download_Geral = False
+    Upload_Geral = False
     Disconnect_Geral = True
+    Connect_delay = False
 
     Connect_Arnaldo = False
-    Arnaldo_delay = False
     Upload_Arnaldo = False
-    Disconnect_Arnaldo = False
 
-    Connect_Banco = False
-    Download_Banco = False
-    Disconnect_Banco = False
+
+    Connect_Banco1 = False
+    Download_Banco1 = False
+    Banco_delay1 = False
+
+    Connect_Banco2 = False
+    Download_Banco2 = False
+    Banco_delay2 = False
+
+    Connect_Banco3 = False
+    Download_Banco3 = False
+    Banco_delay3 = False
+
 
     Connect_Hacker = False
+    Upload_Hacker1 = False
+    Upload_Hacker2 = False
+    Upload_Hacker3 = False
+
+    Hacker_Final = False
     Download_Hacker = False
     Upload_Hacker = False
     Execute_Hacker = False
     Execute_Safe = False
 
+    Final = False
     # funcao_bool
     def func_bool(b, save_name, screen):
         if save_name[b].find("TI@172.222.62.108:") == -1:
@@ -333,7 +351,7 @@ def name():
                     return
 
                 if evt.type == pg.USEREVENT:
-                    if bool_chat1 == True:
+                    if bool_chat1 is True:
                         scroll()
                         save_name[10] = hacker[11 + chat1]
                         chat1 += 1
@@ -342,16 +360,52 @@ def name():
                             pg.time.set_timer(pg.USEREVENT, 0)
                             bool_chat1 = False
 
-                    if Arnaldo_delay == True:
+                    if Connect_delay is True:
                         scroll()
                         save_name[10] = 'Conexão estabelecida'
-                        Arnaldo_delay = False
+                        Connect_delay = False
 
-                    if Upload_Arnaldo == True:
+                    if Upload_Geral is True:
                         scroll()
                         save_name[10] = 'Upload realizado com sucesso!'
-                        Upload_Arnaldo = False
+                        Upload_Geral = False
 
+                    if Download_Geral is True:
+                        scroll()
+                        save_name[10] = 'Download realizado com sucesso!'
+                        Download_Geral = False
+
+                    if Execute_Geral is True:
+                        scroll()
+                        save_name[10] = 'O arquivo foi executado com sucesso!'
+                        Execute_Geral = False
+
+                    if bool_chat2 is True:
+                        scroll()
+                        save_name[10] = hacker[21 + chat2]
+                        chat2 += 1
+                        if chat2 == 9:
+                            pg.time.set_timer(pg.USEREVENT, 0)
+                            bool_chat2 = False
+
+                    if bool_chat3 is True:
+                        scroll()
+                        save_name[10] = hacker[30 + chat3]
+                        chat3 += 1
+                        if chat3 == 8:
+                            pg.time.set_timer(pg.USEREVENT, 0)
+                            bool_chat3 = False
+
+                    if Final is True:
+                        print('mudar background')
+                        if Execute_Hacker is True and Upload_Hacker is True:
+                            print('Pior final')
+                        elif Execute_Hacker is True and Upload_Hacker is True:
+                            print('Final Médio')
+                        elif Execute_Safe is True and Upload_Hacker is True:
+                            print('Final Médio BOM')
+                        elif Execute_Safe is True:
+                            print('Final Bom')
 
                 if evt.type == pg.MOUSEBUTTONDOWN:
                     mx, my = pg.mouse.get_pos()
@@ -383,18 +437,23 @@ def name():
                         save_name[10] = name
                         name = ""
 
-                        if Disconnect_Geral == False:
+                        if Disconnect_Geral is False:
                             if save_name[10] == 'disconnect':
                                 scroll()
                                 save_name[10] = 'As conexões foram encerradas!'
                                 Disconnect_Geral = True
 
+                        if Disconnect_Geral is True:
+                            if Upload_Arnaldo is True:
+                                pg.time.set_timer(pg.USEREVENT, 4000)
+                                bool_chat2 = True
 
                         if Inicio is False:
                             pg.time.set_timer(pg.USEREVENT, 400)
                             Inicio = True
 
                         if Inicio is True:
+
                             if Disconnect_Geral is True:
                                 if save_name[10] == ('connect 235.98.164.90'):
                                     Connect_Arnaldo = True
@@ -402,19 +461,154 @@ def name():
                                     scroll()
                                     save_name[10] = 'Estabelecendo conexão...'
                                     pg.time.set_timer(pg.USEREVENT, 3000)
-                                    Arnaldo_delay = True
+                                    Connect_delay = True
 
                                     Disconnect_Geral = False
+
+
+                                if save_name[10] == ('connect 208.188.188.102'):
+                                    Connect_Banco1 = True
+
+                                    scroll()
+                                    save_name[10] = 'Estabelecendo conexão...'
+                                    pg.time.set_timer(pg.USEREVENT, 3000)
+                                    Connect_delay = True
+
+                                    Disconnect_Geral = False
+
+
+                                if save_name[10] == ('connect 144.30.230.64'):
+                                    Connect_Banco2 = True
+
+                                    scroll()
+                                    save_name[10] = 'Estabelecendo conexão...'
+                                    pg.time.set_timer(pg.USEREVENT, 3000)
+                                    Connect_delay = True
+
+                                    Disconnect_Geral = False
+
+
+                                if save_name[10] == ('connect 157.76.32.233'):
+                                    Connect_Banco3 = True
+
+                                    scroll()
+                                    save_name[10] = 'Estabelecendo conexão...'
+                                    pg.time.set_timer(pg.USEREVENT, 3000)
+                                    Connect_delay = True
+
+                                    Disconnect_Geral = False
+
+                                if save_name[10] == ('connect 172.222.62.108'):
+                                    Connect_Hacker = True
+
+                                    scroll()
+                                    save_name[10] = 'Estabelecendo conexão...'
+                                    pg.time.set_timer(pg.USEREVENT, 3000)
+                                    Connect_delay = True
+
+                                    Disconnect_Geral = False
+
 
                         if Connect_Arnaldo is True:
                             if save_name[10] == ('upload Dados/CavaloDeEsparta.bat'):
                                 Upload_Arnaldo = True
+                                Upload_Geral = True
                                 scroll()
                                 save_name[10] = 'Realizando upload de CavaloDeEsparta.bat...'
                                 pg.time.set_timer(pg.USEREVENT, 3000)
 
+                        if Connect_Banco1 is True:
+                            if save_name[10] == ('download confidecial.txt'):
+                                Download_Banco1 = True
+                                Download_Geral = True
+                                scroll()
+                                save_name[10] = 'Realizando download de confidecial.txt...'
+                                pg.time.set_timer(pg.USEREVENT, 3000)
 
+                        if Connect_Banco2 is True:
+                            if save_name[10] == ('download confidecial.txt'):
+                                Download_Banco2 = True
+                                Download_Geral = True
+                                scroll()
+                                save_name[10] = 'Realizando download de CC.txt...'
+                                pg.time.set_timer(pg.USEREVENT, 3000)
 
+                        if Connect_Banco3 is True:
+                            if save_name[10] == ('download confidecial.txt'):
+                                Download_Banco3 = True
+                                Download_Geral = True
+                                scroll()
+                                save_name[10] = 'Realizando download de senhas.txt...'
+                                pg.time.set_timer(pg.USEREVENT, 3000)
+
+                        if Connect_Hacker is True:
+                            if Download_Banco1 is True:
+                                if save_name[10] == ('upload Dados/confidecial.txt'):
+                                    Upload_Hacker1 = True
+                                    Upload_Geral = True
+                                    scroll()
+                                    save_name[10] = 'Realizando upload de confidencial.txt...'
+                                    pg.time.set_timer(pg.USEREVENT, 3000)
+
+                            if Download_Banco2 is True:
+                                if save_name[10] == ('upload Dados/CC.txt'):
+                                    Upload_Hacker2 = True
+                                    Upload_Geral = True
+                                    scroll()
+                                    save_name[10] = 'Realizando upload de CC.txt...'
+                                    pg.time.set_timer(pg.USEREVENT, 3000)
+
+                            if Download_Banco3 is True:
+                                if save_name[10] == ('upload Dados/senhas.txt'):
+                                    Upload_Hacker3 = True
+                                    Upload_Geral = True
+                                    scroll()
+                                    save_name[10] = 'Realizando upload de senhas.txt...'
+                                    pg.time.set_timer(pg.USEREVENT, 3000)
+
+                        if Upload_Hacker1 is True and Upload_Hacker2 is True and Upload_Hacker3 is True:
+                            bool_chat3 = True
+                            pg.time.set_timer(pg.USEREVENT, 4000)
+                            Hacker_Final = True
+
+                        if Hacker_Final is True:
+                            if save_name[10] == ('upload Dados/apaga_rastro.rofl'):
+                                Upload_Hacker = True
+                                Upload_Geral = True
+                                scroll()
+                                save_name[10] = 'Realizando upload de apaga_rastro.rofl...'
+                                pg.time.set_timer(pg.USEREVENT, 3000)
+
+                        if Hacker_Final is True:
+                            if save_name[10] == ('download Testa_de_Ferro.exe'):
+                                Download_Hacker = True
+                                Download_Geral = True
+                                scroll()
+                                save_name[10] = 'Realizando download de Testa_de_ferro.exe...'
+                                pg.time.set_timer(pg.USEREVENT, 3000)
+
+                        if Hacker_Final is True:
+                            if save_name[10] == ('execute Testa_de_Ferro.exe'):
+                                Execute_Hacker = True
+                                Execute_Geral = True
+                                scroll()
+                                save_name[10] = 'Executando arquivo Testa_de_ferro.exe...'
+                                pg.time.set_timer(pg.USEREVENT, 3000)
+
+                        if Hacker_Final is True:
+                            if save_name[10] == ('execute apaga_rastro.rofl'):
+                                Execute_Safe = True
+                                Execute_Geral = True
+                                scroll()
+                                save_name[10] = 'Executando arquivo apaga_rastro.rofl...'
+                                pg.time.set_timer(pg.USEREVENT, 3000)
+
+                        if Hacker_Final is True:
+                            if save_name[10] == ('shutdown'):
+                                Final = True
+                                scroll()
+                                save_name[10] = 'Desligando o computador...'
+                                pg.time.set_timer(pg.USEREVENT, 6000)
 
             for i in range(11):
                 func_bool(i, save_name, screen)
