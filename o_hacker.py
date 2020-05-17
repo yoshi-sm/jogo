@@ -33,6 +33,8 @@ def name():
 
     bg_cmd = pg.image.load('img/bg/bg_cmd.png')
 
+    bg_log = pg.image.load("img/bg/bg_log.png")
+
     # posicoes dos textos
     pos0 = [100, 75]
     pos1 = [150, 675]
@@ -43,7 +45,7 @@ def name():
     screen = pg.display.set_mode((1200, 800))
 
     # textos
-    simbolos = {".", '"', "/", ":", "@"}
+    simbolos = {".", '"', "/", ":", "@", "_"}
     pre_text = ">>>>:"
     versao_cmd = "Prompt de comando Orange [versão 2.45.102]"
     name = ""
@@ -119,7 +121,7 @@ def name():
     doc_lixeira3 = False
 
     cmd = False
-
+    log = False
 
     dados = False
     dados_ip = False
@@ -135,19 +137,19 @@ def name():
 
     Connect_Arnaldo = False
     Upload_Arnaldo = False
-
+    Unique_Arnaldo = True
 
     Connect_Banco1 = False
     Download_Banco1 = False
-    Banco_delay1 = False
+
 
     Connect_Banco2 = False
     Download_Banco2 = False
-    Banco_delay2 = False
+
 
     Connect_Banco3 = False
     Download_Banco3 = False
-    Banco_delay3 = False
+
 
 
     Connect_Hacker = False
@@ -160,6 +162,8 @@ def name():
     Upload_Hacker = False
     Execute_Hacker = False
     Execute_Safe = False
+    Execute_Geral = False
+    Unique_Hacker = True
 
     Final = False
     # funcao_bool
@@ -174,6 +178,17 @@ def name():
     def scroll():
         for i in range(10):
             save_name[i] = save_name[i + 1]
+
+    #funcao disconnect
+    def disc(connect):
+        global Disconnect_geral
+
+        if save_name[10] == 'disconnect':
+            scroll()
+            save_name[10] = 'As conexões foram encerradas!'
+            Disconnect_Geral = True
+            connect = False
+
 
     for i in range(11):
         save_name.append(hacker[i])
@@ -205,8 +220,50 @@ def name():
                         cmd = True
                         desktop = False
 
+                    if 100 < mx < 160 and 390 < my < 460:
+                        print("abrir log")
+                        log = True
+                        desktop = False
+
 
                 pg.display.flip()
+
+        while log is True:
+            screen.blit(bg_log, (0,0))
+            for evt in pg.event.get():
+
+                if evt.type == pg.MOUSEBUTTONDOWN:
+                    mx, my = pg.mouse.get_pos()
+                    print(mx, my)
+                    if 1135 < mx < 1150 and 39 < my < 54:
+                        desktop = True
+                        log = False
+
+                if bool_chat3 is True:
+                    for i in range(29, 37):
+                        screen.blit(font.render(hacker[i], True, (0, 0, 0)), (100, 125 + ((i-29) * 50)))
+
+                elif bool_chat2 is True:
+                    for i in range(21, 29):
+                        screen.blit(font.render(hacker[i], True, (0, 0, 0)), (100, 125 + ((i-21) * 50)))
+
+                elif bool_chat1 is False:
+                    for i in range(11, 21):
+                        screen.blit(font.render(hacker[i], True, (0, 0, 0)), (100, 125 + ((i-11) * 50)))
+
+                elif bool_chat1 is True:
+                    for i in range(11):
+                        screen.blit(font.render(hacker[i], True, (0, 0, 0)), (100, 125 + (i * 50)))
+
+
+
+
+
+
+                if evt.type == QUIT:
+                    return
+                pg.display.flip()
+
 
         while lixeira is True:
             screen.blit(bg_lixeira, (0, 0))
@@ -437,77 +494,82 @@ def name():
                         save_name[10] = name
                         name = ""
 
-                        if Disconnect_Geral is False:
+                        '''if Disconnect_Geral is False:
                             if save_name[10] == 'disconnect':
                                 scroll()
                                 save_name[10] = 'As conexões foram encerradas!'
                                 Disconnect_Geral = True
 
-                        if Disconnect_Geral is True:
-                            if Upload_Arnaldo is True:
-                                pg.time.set_timer(pg.USEREVENT, 4000)
-                                bool_chat2 = True
+                                if Upload_Arnaldo is True:
+                                    pg.time.set_timer(pg.USEREVENT, 4000)
+                                    bool_chat2 = True'''
 
                         if Inicio is False:
                             pg.time.set_timer(pg.USEREVENT, 400)
                             Inicio = True
 
-                        if Inicio is True:
 
-                            if Disconnect_Geral is True:
-                                if save_name[10] == ('connect 235.98.164.90'):
-                                    Connect_Arnaldo = True
 
+                        if Disconnect_Geral is True:
+                            if save_name[10] == ('connect 235.98.164.90'):
+                                Connect_Arnaldo = True
+
+                                scroll()
+                                save_name[10] = 'Estabelecendo conexão...'
+                                pg.time.set_timer(pg.USEREVENT, 3000)
+                                Connect_delay = True
+                                Disconnect_Geral = False
+
+
+
+                            if save_name[10] == ('connect 208.188.188.102'):
+                                Connect_Banco1 = True
+
+                                scroll()
+                                save_name[10] = 'Estabelecendo conexão...'
+                                pg.time.set_timer(pg.USEREVENT, 3000)
+                                Connect_delay = True
+
+                                Disconnect_Geral = False
+
+
+                            if save_name[10] == ('connect 144.30.230.64'):
+                                Connect_Banco2 = True
+
+                                scroll()
+                                save_name[10] = 'Estabelecendo conexão...'
+                                pg.time.set_timer(pg.USEREVENT, 3000)
+                                Connect_delay = True
+
+                                Disconnect_Geral = False
+
+
+                            if save_name[10] == ('connect 157.76.32.233'):
+                                Connect_Banco3 = True
+
+                                scroll()
+                                save_name[10] = 'Estabelecendo conexão...'
+                                pg.time.set_timer(pg.USEREVENT, 3000)
+                                Connect_delay = True
+
+                                Disconnect_Geral = False
+
+                            if save_name[10] == ('connect 172.222.62.108'):
+                                Connect_Hacker = True
+
+                                scroll()
+                                save_name[10] = 'Estabelecendo conexão...'
+                                pg.time.set_timer(pg.USEREVENT, 3000)
+                                Connect_delay = True
+
+                                Disconnect_Geral = False
+
+                        elif Disconnect_Geral is False:
+
+                            if save_name[10].count("connect") > 0:
+                                if save_name[10].count("disconnect") == 0:
                                     scroll()
-                                    save_name[10] = 'Estabelecendo conexão...'
-                                    pg.time.set_timer(pg.USEREVENT, 3000)
-                                    Connect_delay = True
-
-                                    Disconnect_Geral = False
-
-
-                                if save_name[10] == ('connect 208.188.188.102'):
-                                    Connect_Banco1 = True
-
-                                    scroll()
-                                    save_name[10] = 'Estabelecendo conexão...'
-                                    pg.time.set_timer(pg.USEREVENT, 3000)
-                                    Connect_delay = True
-
-                                    Disconnect_Geral = False
-
-
-                                if save_name[10] == ('connect 144.30.230.64'):
-                                    Connect_Banco2 = True
-
-                                    scroll()
-                                    save_name[10] = 'Estabelecendo conexão...'
-                                    pg.time.set_timer(pg.USEREVENT, 3000)
-                                    Connect_delay = True
-
-                                    Disconnect_Geral = False
-
-
-                                if save_name[10] == ('connect 157.76.32.233'):
-                                    Connect_Banco3 = True
-
-                                    scroll()
-                                    save_name[10] = 'Estabelecendo conexão...'
-                                    pg.time.set_timer(pg.USEREVENT, 3000)
-                                    Connect_delay = True
-
-                                    Disconnect_Geral = False
-
-                                if save_name[10] == ('connect 172.222.62.108'):
-                                    Connect_Hacker = True
-
-                                    scroll()
-                                    save_name[10] = 'Estabelecendo conexão...'
-                                    pg.time.set_timer(pg.USEREVENT, 3000)
-                                    Connect_delay = True
-
-                                    Disconnect_Geral = False
-
+                                    save_name[10] = "Desconecte antes de conectar à outro IP"
 
                         if Connect_Arnaldo is True:
                             if save_name[10] == ('upload Dados/CavaloDeEsparta.bat'):
@@ -517,33 +579,61 @@ def name():
                                 save_name[10] = 'Realizando upload de CavaloDeEsparta.bat...'
                                 pg.time.set_timer(pg.USEREVENT, 3000)
 
+                            if save_name[10] == 'disconnect':
+                                scroll()
+                                save_name[10] = 'As conexões foram encerradas!'
+                                Disconnect_Geral = True
+                                Connect_Arnaldo = False
+                                if Upload_Arnaldo is True:
+                                    if Unique_Arnaldo is True:
+                                        pg.time.set_timer(pg.USEREVENT, 400)
+                                        bool_chat2 = True
+                                        Unique_Arnaldo = False
+
+
                         if Connect_Banco1 is True:
-                            if save_name[10] == ('download confidecial.txt'):
+                            if save_name[10] == ('download confidencial.txt'):
                                 Download_Banco1 = True
                                 Download_Geral = True
                                 scroll()
-                                save_name[10] = 'Realizando download de confidecial.txt...'
+                                save_name[10] = 'Realizando download de confidencial.txt...'
                                 pg.time.set_timer(pg.USEREVENT, 3000)
+                            if save_name[10] == 'disconnect':
+                                scroll()
+                                save_name[10] = 'As conexões foram encerradas!'
+                                Disconnect_Geral = True
+                                Connect_Banco1 = False
+
 
                         if Connect_Banco2 is True:
-                            if save_name[10] == ('download confidecial.txt'):
+                            if save_name[10] == ('download CC.txt'):
                                 Download_Banco2 = True
                                 Download_Geral = True
                                 scroll()
                                 save_name[10] = 'Realizando download de CC.txt...'
                                 pg.time.set_timer(pg.USEREVENT, 3000)
+                            if save_name[10] == 'disconnect':
+                                scroll()
+                                save_name[10] = 'As conexões foram encerradas!'
+                                Disconnect_Geral = True
+                                Connect_Banco2 = False
 
                         if Connect_Banco3 is True:
-                            if save_name[10] == ('download confidecial.txt'):
+                            if save_name[10] == ('download senhas.txt'):
                                 Download_Banco3 = True
                                 Download_Geral = True
                                 scroll()
                                 save_name[10] = 'Realizando download de senhas.txt...'
                                 pg.time.set_timer(pg.USEREVENT, 3000)
+                            if save_name[10] == 'disconnect':
+                                scroll()
+                                save_name[10] = 'As conexões foram encerradas!'
+                                Disconnect_Geral = True
+                                Connect_Banco3 = False
 
                         if Connect_Hacker is True:
                             if Download_Banco1 is True:
-                                if save_name[10] == ('upload Dados/confidecial.txt'):
+                                if save_name[10] == ('upload Dados/confidencial.txt'):
                                     Upload_Hacker1 = True
                                     Upload_Geral = True
                                     scroll()
@@ -566,10 +656,18 @@ def name():
                                     save_name[10] = 'Realizando upload de senhas.txt...'
                                     pg.time.set_timer(pg.USEREVENT, 3000)
 
+                            if save_name[10] == 'disconnect':
+                                scroll()
+                                save_name[10] = 'As conexões foram encerradas!'
+                                Disconnect_Geral = True
+                                Connect_Hacker = False
+
                         if Upload_Hacker1 is True and Upload_Hacker2 is True and Upload_Hacker3 is True:
-                            bool_chat3 = True
-                            pg.time.set_timer(pg.USEREVENT, 4000)
-                            Hacker_Final = True
+                             if Unique_Hacker == True:
+                                bool_chat3 = True
+                                pg.time.set_timer(pg.USEREVENT, 400)
+                                Hacker_Final = True
+                                Unique_Hacker = False
 
                         if Hacker_Final is True:
                             if save_name[10] == ('upload Dados/apaga_rastro.rofl'):
@@ -588,12 +686,13 @@ def name():
                                 pg.time.set_timer(pg.USEREVENT, 3000)
 
                         if Hacker_Final is True:
-                            if save_name[10] == ('execute Testa_de_Ferro.exe'):
-                                Execute_Hacker = True
-                                Execute_Geral = True
-                                scroll()
-                                save_name[10] = 'Executando arquivo Testa_de_ferro.exe...'
-                                pg.time.set_timer(pg.USEREVENT, 3000)
+                            if Download_Hacker is True:
+                                if save_name[10] == ('execute Testa_de_Ferro.exe'):
+                                    Execute_Hacker = True
+                                    Execute_Geral = True
+                                    scroll()
+                                    save_name[10] = 'Executando arquivo Testa_de_ferro.exe...'
+                                    pg.time.set_timer(pg.USEREVENT, 3000)
 
                         if Hacker_Final is True:
                             if save_name[10] == ('execute apaga_rastro.rofl'):

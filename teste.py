@@ -247,13 +247,13 @@ class Pasta_Desk(gui.Dialog):
 
 class Cmd_Desk(gui.Table):
     def __init__(self, **params):
-        title = gui.Label("cmd prompt")
+        title = gui.Label("Log de Mensagens")
 
         width = 1100
         height = 700
 
 
-        doc = gui.Input(width=width, height= height, color=(255,255,255), background=(0, 0, 0))
+        doc = gui.Input(width=width, height= height, color=(255,255,255), background=(255, 255, 255))
 
         def cb():
             texto = doc.value
@@ -287,6 +287,8 @@ if __name__ in '__main__':
     cmd_img = gui.Image("img/desktop/cmd.png")
     cmd_img.connect(gui.CLICK, Cmd_Desk().open, None)
 
+    log_img = gui.Image("img/desktop/log.png")
+
     """notes_img = gui.Image("img/desktop/notes.png")
     notes_img.connect(gui.CLICK, Notes_Desk().open, None)"""
 
@@ -296,7 +298,7 @@ if __name__ in '__main__':
     desktop.add(bin_img, 100, 100)
     desktop.add(pasta_img, 100, 200)
     desktop.add(cmd_img, 100, 300)
-
+    desktop.add(log_img, 100, 400)
     app = gui.Desktop()
     app.connect(gui.QUIT, app.quit, None)
     app.run(desktop)
