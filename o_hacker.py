@@ -13,7 +13,10 @@ def name():
     for i in range(12):
         text_bool.append(False)
 
-
+    # icones desktop
+    img_CC = pg.image.load("img/desktop/CC.png")
+    img_senhas = pg.image.load("img/desktop/senhas.png")
+    img_confidencial = pg.image.load("img/desktop/confidential.png")
 
     # Título e ícone
     pg.display.set_caption("O Hacker")
@@ -30,6 +33,11 @@ def name():
 
     bg_dados = pg.image.load('img/bg/bg_dados.png')
     bg_dados_ip = pg.image.load('img/bg/bg_dados_ip.png')
+    bg_trojan = pg.image.load('img/bg/bg_trojan.png')
+    bg_apaga = pg.image.load('img/bg/bg_apaga.png')
+    bg_confidencial = pg.image.load('img/bg/bg_confidencial.png')
+    bg_CC = pg.image.load('img/bg/bg_CC.png')
+    bg_senhas = pg.image.load('img/bg/bg_senhas.png')
 
     bg_cmd = pg.image.load('img/bg/bg_cmd.png')
 
@@ -122,9 +130,19 @@ def name():
 
     cmd = False
     log = False
+    log1 = True
+    log2 = False
+    log3 = False
+    log4 = False
+
 
     dados = False
     dados_ip = False
+    dados_apaga = False
+    dados_trojan = False
+    dados_confidencial = False
+    dados_CC = False
+    dados_senhas = False
 
     # Booleans jogo
 
@@ -194,6 +212,10 @@ def name():
         save_name.append(hacker[i])
 
     while True:
+
+
+
+
         while desktop is True:
             screen.blit(bg_desktop, (0, 0))
 
@@ -235,23 +257,23 @@ def name():
                 if evt.type == pg.MOUSEBUTTONDOWN:
                     mx, my = pg.mouse.get_pos()
                     print(mx, my)
-                    if 1135 < mx < 1150 and 39 < my < 54:
+                    if 1138 < mx < 1153 and 39 < my < 54:
                         desktop = True
                         log = False
 
-                if bool_chat3 is True:
-                    for i in range(29, 37):
+                if log4 is True:
+                    for i in range(30, 38):
                         screen.blit(font.render(hacker[i], True, (0, 0, 0)), (100, 125 + ((i-29) * 50)))
 
-                elif bool_chat2 is True:
-                    for i in range(21, 29):
+                elif log3 is True:
+                    for i in range(21, 30):
                         screen.blit(font.render(hacker[i], True, (0, 0, 0)), (100, 125 + ((i-21) * 50)))
 
-                elif bool_chat1 is False:
+                elif log2 is True:
                     for i in range(11, 21):
                         screen.blit(font.render(hacker[i], True, (0, 0, 0)), (100, 125 + ((i-11) * 50)))
 
-                elif bool_chat1 is True:
+                elif log1 is True:
                     for i in range(11):
                         screen.blit(font.render(hacker[i], True, (0, 0, 0)), (100, 125 + (i * 50)))
 
@@ -341,6 +363,16 @@ def name():
 
         while dados is True:
             screen.blit(bg_dados, (0, 0))
+
+
+
+            if Download_Banco1 is True:
+                screen.blit(img_confidencial, (400, 115))
+            if Download_Banco2 is True:
+                screen.blit(img_CC, (500, 115))
+            if Download_Banco3 is True:
+                screen.blit(img_senhas, (600, 115))
+
             for evt in pg.event.get():
 
 
@@ -357,12 +389,29 @@ def name():
                         dados_ip = True
                         dados = False
                         print(dados_ip)
-                    """if 205 < mx < 255 and 115 < my < 170:
-                        doc_lixeira2 = True
-                        lixeira = False
+                    if 205 < mx < 255 and 115 < my < 170:
+                        dados_trojan = True
+                        dados = False
                     if 305 < mx < 355 and 115 < my < 170:
-                        doc_lixeira3 = True
-                        lixeira = False"""
+                        dados_apaga = True
+                        dados = False
+
+                    if Download_Banco1 is True:
+
+                        if 405 < mx < 455 and 115 < my < 170:
+                            dados_confidencial = True
+                            dados = False
+                    if Download_Banco2 is True:
+
+                        if 505 < mx < 555 and 115 < my < 170:
+                            dados_CC = True
+                            dados = False
+                    if Download_Banco3 is True:
+
+                        if 605 < mx < 655 and 115 < my < 170:
+                            dados_senhas = True
+                            dados = False
+
             pg.display.flip()
 
         while dados_ip is True:
@@ -376,11 +425,85 @@ def name():
                 if evt.type == pg.MOUSEBUTTONDOWN:
                     mx, my = pg.mouse.get_pos()
                     print(mx, my)
-                    if 1095 < mx < 1110 and 90 < my < 104:
+                    if 1085 < mx < 1100 and 90 < my < 104:
                         dados = True
                         dados_ip = False
             pg.display.flip()
 
+        while dados_trojan is True:
+            screen.blit(bg_trojan, (0, 0))
+            for evt in pg.event.get():
+
+                if evt.type == QUIT:
+                    return
+
+                if evt.type == pg.MOUSEBUTTONDOWN:
+                    mx, my = pg.mouse.get_pos()
+                    print(mx, my)
+                    if 1085 < mx < 1100 and 94 < my < 110:
+                        dados = True
+                        dados_trojan = False
+            pg.display.flip()
+
+        while dados_apaga is True:
+            screen.blit(bg_apaga, (0, 0))
+            for evt in pg.event.get():
+
+                if evt.type == QUIT:
+                    return
+
+                if evt.type == pg.MOUSEBUTTONDOWN:
+                    mx, my = pg.mouse.get_pos()
+                    print(mx, my)
+                    if 1085 < mx < 1100 and 105 < my < 122:
+                        dados = True
+                        dados_apaga = False
+            pg.display.flip()
+
+        while dados_confidencial is True:
+            screen.blit(bg_confidencial, (0, 0))
+            for evt in pg.event.get():
+
+                if evt.type == QUIT:
+                    return
+
+                if evt.type == pg.MOUSEBUTTONDOWN:
+                    mx, my = pg.mouse.get_pos()
+                    print(mx, my)
+                    if 1085 < mx < 1100 and 94 < my < 110:
+                        dados = True
+                        dados_confidencial = False
+            pg.display.flip()
+
+        while dados_CC is True:
+            screen.blit(bg_CC, (0, 0))
+            for evt in pg.event.get():
+
+                if evt.type == QUIT:
+                    return
+
+                if evt.type == pg.MOUSEBUTTONDOWN:
+                    mx, my = pg.mouse.get_pos()
+                    print(mx, my)
+                    if 1085 < mx < 1100 and 104 < my < 120:
+                        dados = True
+                        dados_CC = False
+            pg.display.flip()
+
+        while dados_senhas is True:
+            screen.blit(bg_senhas, (0, 0))
+            for evt in pg.event.get():
+
+                if evt.type == QUIT:
+                    return
+
+                if evt.type == pg.MOUSEBUTTONDOWN:
+                    mx, my = pg.mouse.get_pos()
+                    print(mx, my)
+                    if 1085 < mx < 1100 and 94 < my < 110:
+                        dados = True
+                        dados_senhas = False
+            pg.display.flip()
 
         while cmd is True:
             screen.blit(bg_cmd, (0, 0))
@@ -415,6 +538,7 @@ def name():
 
                         if chat1 == 10:
                             pg.time.set_timer(pg.USEREVENT, 0)
+                            log2 = True
                             bool_chat1 = False
 
                     if Connect_delay is True:
@@ -442,6 +566,7 @@ def name():
                         save_name[10] = hacker[21 + chat2]
                         chat2 += 1
                         if chat2 == 9:
+                            log3 = True
                             pg.time.set_timer(pg.USEREVENT, 0)
                             bool_chat2 = False
 
@@ -450,6 +575,7 @@ def name():
                         save_name[10] = hacker[30 + chat3]
                         chat3 += 1
                         if chat3 == 8:
+                            log4 = True
                             pg.time.set_timer(pg.USEREVENT, 0)
                             bool_chat3 = False
 
@@ -457,7 +583,7 @@ def name():
                         print('mudar background')
                         if Execute_Hacker is True and Upload_Hacker is True:
                             print('Pior final')
-                        elif Execute_Hacker is True and Upload_Hacker is True:
+                        elif Execute_Hacker is True and Upload_Hacker is False:
                             print('Final Médio')
                         elif Execute_Safe is True and Upload_Hacker is True:
                             print('Final Médio BOM')
@@ -544,7 +670,7 @@ def name():
                                 Disconnect_Geral = False
 
 
-                            if save_name[10] == ('connect 157.76.32.233'):
+                            if save_name[10] == ('connect 157.76.32.223'):
                                 Connect_Banco3 = True
 
                                 scroll()
@@ -687,7 +813,7 @@ def name():
 
                         if Hacker_Final is True:
                             if Download_Hacker is True:
-                                if save_name[10] == ('execute Testa_de_Ferro.exe'):
+                                if save_name[10] == ('execute Dados/Testa_de_Ferro.exe'):
                                     Execute_Hacker = True
                                     Execute_Geral = True
                                     scroll()
@@ -695,7 +821,7 @@ def name():
                                     pg.time.set_timer(pg.USEREVENT, 3000)
 
                         if Hacker_Final is True:
-                            if save_name[10] == ('execute apaga_rastro.rofl'):
+                            if save_name[10] == ('execute Dados/apaga_rastro.rofl'):
                                 Execute_Safe = True
                                 Execute_Geral = True
                                 scroll()

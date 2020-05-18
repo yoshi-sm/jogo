@@ -81,7 +81,7 @@ class Arquivo_Dados1(gui.Dialog):
 
         width = 1000
         height = 600
-        doc = gui.Document(width=width)
+        doc = gui.Document(width=width, height=height)
 
         space = title.style.font.size(" ")
 
@@ -146,27 +146,59 @@ class Arquivo_Dados1(gui.Dialog):
             doc.space(space)
         doc.br(space[0])
 
-        gui.Dialog.__init__(self, title, gui.ScrollArea(doc, 0, height))
+        gui.Dialog.__init__(self, title, gui.ScrollArea(doc, 0, 0))
 
 class Arquivo_Dados2(gui.Dialog):
     def __init__(self, **params):
-        title = gui.Label("About Cuzco's Paint")
+        title = gui.Label("CC.txt")
 
         width = 1000
-        height = 600
-        doc = gui.Document(width=width)
+        height = 400
+        doc = gui.Document(width=width, height=height)
 
         space = title.style.font.size(" ")
 
-        for i in range(0, 3):
-            doc.block(align=-1)
-            for word in """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce duiblandit eget 
-            sodales nec, maximus volutpat lectus. Aliquam a.""".split(" "):
-                doc.add(gui.Label(word))
-                doc.space(space)
-            doc.br(space[1])
 
-        gui.Dialog.__init__(self, title, gui.ScrollArea(doc, 0, height))
+        doc.block(align=-1)
+        doc.block(align=-1)
+        for word in """tjlEEPAttNzJepTUx6X4
+                                C8kLJN57yg0S0hdt1oFt
+                        O54C0XWphz8iAlyVyE1n
+                        6tRqgNq0164JYfBd64pW 
+                                6XEBBRv0z9O0NJS15g9V""".split(" "):
+            doc.add(gui.Label(word))
+            doc.space(space)
+        doc.br(space[1])
+
+        doc.block(align=-1)
+        for word in """bPNfTfIaZuQ0YvMucVjx
+                        0v8TX4wsYG4h9yGOSDxf
+                        5k1V3a7nYLUF6uSh4QPW
+                                t8vKUdKQPMrpfqWhijQw
+                                O2Z7td1ASNm5tEm9xOn2
+                        """.split(" "):
+            doc.add(gui.Label(word))
+            doc.space(space)
+        doc.br(space[1])
+        for word in """aIkJLzFfyTdVLKhKHAnF
+                                v47qKA12BnVXs2feZ5uN
+                                saJJAMWVyiRCVXQVe0I4
+                                APMcngdeYvoOi5sbQKcV
+                                DXs8F1ZiUS7OQwGf8NSE""".split(" "):
+            doc.add(gui.Label(word))
+            doc.space(space)
+        doc.br(space[1])
+
+
+        for word in """p93mk38leMjYGLGvgjYj
+jVPzdboxa0SAYziZ0326
+m0YpLpdvfDRpMATl6Cla
+VDa2VulXF6J1mpfxHin1
+jqEwuWQm954Gipc5uzg4""".split(" "):
+            doc.add(gui.Label(word))
+            doc.space(space)
+        doc.br(space[1])
+        gui.Dialog.__init__(self, title, gui.ScrollArea(doc, 0, 0))
 
 class Arquivo_Dados3(gui.Dialog):
     def __init__(self, **params):
@@ -206,9 +238,9 @@ class Bin_Desk(gui.Dialog):
         doc = gui.Container(width=width, height= height)
         img1 = gui.Image("img/desktop/notes.png")
         img1.connect(gui.CLICK, Arquivo_Lixo1().open, None)
-        img2 = gui.Image("img/desktop/notes.png")
+        img2 = gui.Image("img/desktop/trojan.png")
         img2.connect(gui.CLICK, Arquivo_Lixo2().open, None)
-        img3 = gui.Image("img/desktop/notes.png")
+        img3 = gui.Image("img/desktop/eraser.png")
         img3.connect(gui.CLICK, Arquivo_Lixo3().open, None)
 
         doc.add(img1, 50, 50)
@@ -233,11 +265,11 @@ class Pasta_Desk(gui.Dialog):
         img1.connect(gui.CLICK, Arquivo_Dados1().open, None)
         doc.add(img1, 50, 50)
 
-        img2 = gui.Image("img/desktop/notes.png")
+        img2 = gui.Image("img/desktop/trojan.png")
         img2.connect(gui.CLICK, Arquivo_Dados2().open, None)
         doc.add(img2, 150, 50)
 
-        img3 = gui.Image("img/desktop/notes.png")
+        img3 = gui.Image("img/desktop/eraser.png")
         img3.connect(gui.CLICK, Arquivo_Dados3().open, None)
         doc.add(img3, 250, 50)
 
