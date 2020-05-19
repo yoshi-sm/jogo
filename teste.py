@@ -279,13 +279,13 @@ class Pasta_Desk(gui.Dialog):
 
 class Cmd_Desk(gui.Table):
     def __init__(self, **params):
-        title = gui.Label("Log de Mensagens")
+        title = gui.Label("Fim")
 
-        width = 1100
-        height = 700
+        width = 1150
+        height = 750
 
 
-        doc = gui.Input(width=width, height= height, color=(255,255,255), background=(255, 255, 255))
+        doc = gui.Input(width=width, height= height, color=(255,255,255), background=(0, 0, 0))
 
         def cb():
             texto = doc.value

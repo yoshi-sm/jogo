@@ -43,6 +43,8 @@ def name():
 
     bg_log = pg.image.load("img/bg/bg_log.png")
 
+    bg_fim = pg.image.load("img/bg/bg_Fim.png")
+
     # posicoes dos textos
     pos0 = [100, 75]
     pos1 = [150, 675]
@@ -113,12 +115,36 @@ def name():
     hacker.append("TI@172.222.62.108: Vou precisar que você me passe o arquivo 'apaga_rastro.rofl'.")
     hacker.append("TI@172.222.62.108: É só fazer o upload para o meu IP.")
     hacker.append("TI@172.222.62.108: Depois disso eu quero que você faça o download do arquivo 'Testa_de_Ferro.exe'.")
-    hacker.append("TI@172.222.62.108: Quando terminar 'execute Dados/Testa_de_Ferro.exe' e digite 'shutdown'.")
+    hacker.append("TI@172.222.62.108: Quando terminar 'execute Dados/Testa_de_Ferro.exe' e depois digite 'shutdown'.")
     hacker.append("TI@172.222.62.108: Depois disso, pode voltar ao trabalho, nos encontramos quando eu melhorar!")
 
+    #texto
+    text_Final1 = ['Acontece que seu amigo do setor de TI era, na verdade, um hacker.',
+                   'Os arquivos que você baixou do banco eram informações confidenciais.',
+                   'O arquivo que você executou vai incriminar você, e o arquivo que você passou para o hacker',
+                   'irá garantir que ele não seja incriminado.',
+                   'Talvez seja hora de fugir do país e começar uma nova vida.']
 
+    text_Final2 = ['Acontece que seu amigo do setor de TI era, na verdade, um hacker.',
+                   'Os arquivos que você baixou do banco eram informações confidenciais.',
+                   'O arquivo que você executou vai incriminar você, e como você não passou o arquivo para o hacker,',
+                   'vocês vão ter bastante tempo para se conhecerem melhor na cadeia.',
+                   'Talvez este seja o início de uma bela amizade.']
 
+    text_Final3 = ['Acontece que seu amigo do setor de TI era, na verdade, um hacker.',
+                   'Os arquivos que você baixou do banco eram informações confidenciais.',
+                   'O arquivo que você executou e que você passou para o hacker apagou todos os rastros que poderiam',
+                   'incriminar vocês. No entanto, um crime sem culpado mantém a investigação em aberto.',
+                   'Talvez seja um bom momento para evitar chamar a atenção das autoridades.']
 
+    text_Final4 = ['Acontece que seu amigo do setor de TI era, na verdade, um hacker.',
+                   'Os arquivos que você baixou do banco eram informações confidenciais.',
+                   'O arquivo que você executou apagou os rastros que incriminariam você, e como você não passou',
+                   'o arquivo para o hacker, a polícia vai fazer uma visita à ele em breve.',
+                   'Só mais um dia normal em um emprego normal no setor de vendas.']
+
+    fim_pos = [0, 0, 0, 0, 0]
+    name_final=['', '', '', '', '']
 
     # Booleans
     desktop = True
@@ -184,6 +210,11 @@ def name():
     Unique_Hacker = True
 
     Final = False
+
+    Final1 = True
+    Final2 = False
+    Final3 = False
+    Final4 = False
     # funcao_bool
     def func_bool(b, save_name, screen):
         if save_name[b].find("TI@172.222.62.108:") == -1:
@@ -191,6 +222,10 @@ def name():
             screen.blit(font.render(save_name[b], True, (255, 255, 255)), (215, 125 + (b * 50)))
         else:
             screen.blit(font.render(save_name[b], True, (96, 250, 7)), (100, 125 + (b * 50)))
+
+    def text(b, save_name, screen):
+
+            screen.blit(font.render(save_name[b], True, (255, 255, 255)), (100, 125 + (b * 50)))
 
     # funcao scroll
     def scroll():
@@ -210,11 +245,141 @@ def name():
 
     for i in range(11):
         save_name.append(hacker[i])
-
+    pg.time.set_timer(pg.USEREVENT, 50)
     while True:
 
+        while Final1 is True:
+            screen.blit(bg_fim, (0, 0))
+            for i in range(len(fim_pos)):
+                screen.blit(font.render(name_final[i], True, (255, 255, 255)), (100, (125 + (i*30))))
 
 
+            for evt in pg.event.get():
+
+                if evt.type == pg.USEREVENT:
+
+                    if fim_pos[0] <= len(text_Final1[0])-1:
+                        name_final[0] += text_Final1[0][fim_pos[0]]
+                        fim_pos[0] += 1
+
+                    elif fim_pos[1] <= len(text_Final1[1])-1:
+                        name_final[1] += text_Final1[1][fim_pos[1]]
+                        fim_pos[1] += 1
+
+                    elif fim_pos[2] <= len(text_Final1[2]) - 1:
+                        name_final[2] += text_Final1[2][fim_pos[2]]
+                        fim_pos[2] += 1
+
+                    elif fim_pos[3] <= len(text_Final1[3]) - 1:
+                        name_final[3] += text_Final1[3][fim_pos[3]]
+                        fim_pos[3] += 1
+
+                    elif fim_pos[4] <= len(text_Final1[4]) - 1:
+                        name_final[4] += text_Final1[4][fim_pos[4]]
+                        fim_pos[4] += 1
+
+                if evt.type == QUIT:
+                    return
+            pg.display.flip()
+
+        while Final2 is True:
+            screen.blit(bg_fim, (0, 0))
+            for i in range(len(fim_pos)):
+                screen.blit(font.render(name_final[i], True, (255, 255, 255)), (100, (125 + (i * 30))))
+
+            for evt in pg.event.get():
+
+                if evt.type == pg.USEREVENT:
+
+                    if fim_pos[0] <= len(text_Final2[0]) - 1:
+                        name_final[0] += text_Final2[0][fim_pos[0]]
+                        fim_pos[0] += 1
+
+                    elif fim_pos[1] <= len(text_Final2[1]) - 1:
+                        name_final[1] += text_Final2[1][fim_pos[1]]
+                        fim_pos[1] += 1
+
+                    elif fim_pos[2] <= len(text_Final2[2]) - 1:
+                        name_final[2] += text_Final2[2][fim_pos[2]]
+                        fim_pos[2] += 1
+
+                    elif fim_pos[3] <= len(text_Final2[3]) - 1:
+                        name_final[3] += text_Final2[3][fim_pos[3]]
+                        fim_pos[3] += 1
+
+                    elif fim_pos[4] <= len(text_Final2[4]) - 1:
+                        name_final[4] += text_Final2[4][fim_pos[4]]
+                        fim_pos[4] += 1
+
+                if evt.type == QUIT:
+                    return
+            pg.display.flip()
+
+        while Final3 is True:
+            screen.blit(bg_fim, (0, 0))
+            for i in range(len(fim_pos)):
+                screen.blit(font.render(name_final[i], True, (255, 255, 255)), (100, (125 + (i * 30))))
+
+            for evt in pg.event.get():
+
+                if evt.type == pg.USEREVENT:
+
+                    if fim_pos[0] <= len(text_Final3[0]) - 1:
+                        name_final[0] += text_Final3[0][fim_pos[0]]
+                        fim_pos[0] += 1
+
+                    elif fim_pos[1] <= len(text_Final3[1]) - 1:
+                        name_final[1] += text_Final3[1][fim_pos[1]]
+                        fim_pos[1] += 1
+
+                    elif fim_pos[2] <= len(text_Final3[2]) - 1:
+                        name_final[2] += text_Final3[2][fim_pos[2]]
+                        fim_pos[2] += 1
+
+                    elif fim_pos[3] <= len(text_Final3[3]) - 1:
+                        name_final[3] += text_Final3[3][fim_pos[3]]
+                        fim_pos[3] += 1
+
+                    elif fim_pos[4] <= len(text_Final3[4]) - 1:
+                        name_final[4] += text_Final3[4][fim_pos[4]]
+                        fim_pos[4] += 1
+
+                if evt.type == QUIT:
+                    return
+            pg.display.flip()
+
+        while Final4 is True:
+            screen.blit(bg_fim, (0, 0))
+            for i in range(len(fim_pos)):
+                screen.blit(font.render(name_final[i], True, (255, 255, 255)), (100, (125 + (i * 30))))
+
+            for evt in pg.event.get():
+
+                if evt.type == pg.USEREVENT:
+
+                    if fim_pos[0] <= len(text_Final4[0]) - 1:
+                        name_final[0] += text_Final4[0][fim_pos[0]]
+                        fim_pos[0] += 1
+
+                    elif fim_pos[1] <= len(text_Final4[1]) - 1:
+                        name_final[1] += text_Final4[1][fim_pos[1]]
+                        fim_pos[1] += 1
+
+                    elif fim_pos[2] <= len(text_Final4[2]) - 1:
+                        name_final[2] += text_Final4[2][fim_pos[2]]
+                        fim_pos[2] += 1
+
+                    elif fim_pos[3] <= len(text_Final4[3]) - 1:
+                        name_final[3] += text_Final4[3][fim_pos[3]]
+                        fim_pos[3] += 1
+
+                    elif fim_pos[4] <= len(text_Final4[4]) - 1:
+                        name_final[4] += text_Final4[4][fim_pos[4]]
+                        fim_pos[4] += 1
+
+                if evt.type == QUIT:
+                    return
+            pg.display.flip()
 
         while desktop is True:
             screen.blit(bg_desktop, (0, 0))
@@ -582,13 +747,25 @@ def name():
                     if Final is True:
                         print('mudar background')
                         if Execute_Hacker is True and Upload_Hacker is True:
-                            print('Pior final')
+                            Final1 = True
+                            pg.time.set_timer(pg.USEREVENT, 0)
+                            pg.time.set_timer(pg.USEREVENT, 50)
+                            cmd = False
                         elif Execute_Hacker is True and Upload_Hacker is False:
-                            print('Final Médio')
+                            Final2 = True
+                            pg.time.set_timer(pg.USEREVENT, 0)
+                            pg.time.set_timer(pg.USEREVENT, 50)
+                            cmd = False
                         elif Execute_Safe is True and Upload_Hacker is True:
-                            print('Final Médio BOM')
+                            Final3 = True
+                            pg.time.set_timer(pg.USEREVENT, 0)
+                            pg.time.set_timer(pg.USEREVENT, 50)
+                            cmd = False
                         elif Execute_Safe is True:
-                            print('Final Bom')
+                            Final4 = True
+                            pg.time.set_timer(pg.USEREVENT, 0)
+                            pg.time.set_timer(pg.USEREVENT, 50)
+                            cmd = False
 
                 if evt.type == pg.MOUSEBUTTONDOWN:
                     mx, my = pg.mouse.get_pos()
@@ -730,7 +907,6 @@ def name():
                                 Disconnect_Geral = True
                                 Connect_Banco1 = False
 
-
                         if Connect_Banco2 is True:
                             if save_name[10] == ('download CC.txt'):
                                 Download_Banco2 = True
@@ -833,7 +1009,7 @@ def name():
                                 Final = True
                                 scroll()
                                 save_name[10] = 'Desligando o computador...'
-                                pg.time.set_timer(pg.USEREVENT, 6000)
+                                pg.time.set_timer(pg.USEREVENT, 3000)
 
             for i in range(11):
                 func_bool(i, save_name, screen)
