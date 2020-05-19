@@ -1,11 +1,16 @@
 import pygame as pg
 from pygame.locals import *
-from pgu import gui
+from pygame import mixer
+
 
 
 def name():
 
-    #tempo
+    pg.init()
+    #sons
+    msg = mixer.Sound('sound/msg2.wav')
+    msg_hacker = mixer.Sound('sound/msg_hacker.wav')
+    system = mixer.Sound('sound/system.wav')
 
 
     # textos booleanos
@@ -78,7 +83,7 @@ def name():
     hacker.append("TI@172.222.62.108: Quando você vir essa mensagem fala qualquer coisa que eu digo o que preciso.")
 
 
-    bool_chat1 = True
+    bool_chat1 = False
     chat1 = 0  # 10
     hacker.append("TI@172.222.62.108: Então cara, se você for na sua pasta de dados e abrir o primeiro arquivo")
     hacker.append("TI@172.222.62.108: Você vai ver uma lista de IP dos clientes.")
@@ -211,7 +216,7 @@ def name():
 
     Final = False
 
-    Final1 = True
+    Final1 = False
     Final2 = False
     Final3 = False
     Final4 = False
@@ -700,6 +705,7 @@ def name():
                         scroll()
                         save_name[10] = hacker[11 + chat1]
                         chat1 += 1
+                        msg_hacker.play()
 
                         if chat1 == 10:
                             pg.time.set_timer(pg.USEREVENT, 0)
@@ -709,27 +715,32 @@ def name():
                     if Connect_delay is True:
                         scroll()
                         save_name[10] = 'Conexão estabelecida'
+                        system.play()
                         Connect_delay = False
 
                     if Upload_Geral is True:
                         scroll()
                         save_name[10] = 'Upload realizado com sucesso!'
+                        system.play()
                         Upload_Geral = False
 
                     if Download_Geral is True:
                         scroll()
                         save_name[10] = 'Download realizado com sucesso!'
+                        system.play()
                         Download_Geral = False
 
                     if Execute_Geral is True:
                         scroll()
                         save_name[10] = 'O arquivo foi executado com sucesso!'
+                        system.play()
                         Execute_Geral = False
 
                     if bool_chat2 is True:
                         scroll()
                         save_name[10] = hacker[21 + chat2]
                         chat2 += 1
+                        msg_hacker.play()
                         if chat2 == 9:
                             log3 = True
                             pg.time.set_timer(pg.USEREVENT, 0)
@@ -739,6 +750,7 @@ def name():
                         scroll()
                         save_name[10] = hacker[30 + chat3]
                         chat3 += 1
+                        msg_hacker.play()
                         if chat3 == 8:
                             log4 = True
                             pg.time.set_timer(pg.USEREVENT, 0)
@@ -796,21 +808,12 @@ def name():
                         scroll()
                         save_name[10] = name
                         name = ""
-
-                        '''if Disconnect_Geral is False:
-                            if save_name[10] == 'disconnect':
-                                scroll()
-                                save_name[10] = 'As conexões foram encerradas!'
-                                Disconnect_Geral = True
-
-                                if Upload_Arnaldo is True:
-                                    pg.time.set_timer(pg.USEREVENT, 4000)
-                                    bool_chat2 = True'''
+                        msg.play()
 
                         if Inicio is False:
-                            pg.time.set_timer(pg.USEREVENT, 400)
+                            pg.time.set_timer(pg.USEREVENT, 3000)
                             Inicio = True
-
+                            bool_chat1 = True
 
 
                         if Disconnect_Geral is True:
@@ -889,7 +892,7 @@ def name():
                                 Connect_Arnaldo = False
                                 if Upload_Arnaldo is True:
                                     if Unique_Arnaldo is True:
-                                        pg.time.set_timer(pg.USEREVENT, 400)
+                                        pg.time.set_timer(pg.USEREVENT, 3000)
                                         bool_chat2 = True
                                         Unique_Arnaldo = False
 
@@ -967,7 +970,7 @@ def name():
                         if Upload_Hacker1 is True and Upload_Hacker2 is True and Upload_Hacker3 is True:
                              if Unique_Hacker == True:
                                 bool_chat3 = True
-                                pg.time.set_timer(pg.USEREVENT, 400)
+                                pg.time.set_timer(pg.USEREVENT, 3000)
                                 Hacker_Final = True
                                 Unique_Hacker = False
 
