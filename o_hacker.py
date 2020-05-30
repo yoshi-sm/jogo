@@ -670,7 +670,7 @@ def name():
                 if evt.type == pg.MOUSEBUTTONDOWN:
                     mx, my = pg.mouse.get_pos()
                     print(mx, my)
-                    if 1085 < mx < 1100 and 94 < my < 110:
+                    if 1085 < mx < 1100 and 99 < my < 115:
                         dados = True
                         dados_senhas = False
             pg.display.flip()
